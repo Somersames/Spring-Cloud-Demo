@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: somersames-zuul
+eureka:
+  client:
+    service-url:
+        defaultZone: http://localhost:8081/eureka
+zuul:
+  routes:
+    user-route:
+      url : http://localhost:8082
+      path : /user/**

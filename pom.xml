@@ -10,6 +10,7 @@
   <modules>
     <module>scuser</module>
     <module>sczuul</module>
+    <module>scerueka</module>
   </modules>
   <packaging>pom</packaging>
 
