@@ -1,3 +1,4 @@
+
 spring:
   application:
     name: somersames-zuul
@@ -10,3 +11,5 @@ zuul:
     user-route:
       url : http://localhost:8082
       path : /user/**
+server:
+  port: 8083
