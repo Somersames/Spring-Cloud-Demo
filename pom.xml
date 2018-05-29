@@ -11,6 +11,8 @@
     <module>scuser</module>
     <module>sczuul</module>
     <module>scerueka</module>
+      <module>scgoods</module>
+      <module>sccomments</module>
   </modules>
   <packaging>pom</packaging>
 

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @create 2018-05-22 10:29
  **/
 @RestController
-@RequestMapping("user")
+@RequestMapping("testuser")
 public class UserTestController {
     @GetMapping("/testzuul")
     public String testZUul(){
