@@ -13,6 +13,7 @@
     <module>scerueka</module>
       <module>scgoods</module>
       <module>sccomments</module>
+      <module>scauth</module>
   </modules>
   <packaging>pom</packaging>
 
