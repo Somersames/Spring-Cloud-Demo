@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: somersames-config
+  cloud:
+    config:
+      server:
+        git:
+          uri: ${GitAddress:}
+          search-paths: ${GitPath:dev}
+eureka:
+  client:
+    service-url:
+      defaultZone: http://${EurekaHost:localhost}:${EurekaPort:9000}/erurka/
+
