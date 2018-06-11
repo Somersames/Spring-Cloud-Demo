@@ -1,14 +1,15 @@
 spring:
   application:
-    name: somersames-config
+    name: sc-config
   cloud:
     config:
       server:
         git:
-          uri: ${GitAddress:}
+          uri: ${GitAddress:https://gitee.com/somersames/spring-cloud-demo-config}
           search-paths: ${GitPath:dev}
 eureka:
   client:
     service-url:
-      defaultZone: http://${EurekaHost:localhost}:${EurekaPort:9000}/erurka/
-
+      defaultZone: http://${EurekaHost:localhost}:${EurekaPort:8081}/eureka/
+server:
+  port: 8888

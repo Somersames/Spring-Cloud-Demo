@@ -4,3 +4,16 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8081/eureka
+
+spring:
+  profiles:
+    active: master
+  application:
+    name: sc-auth
+  cloud:
+    config:
+      discovery:
+        service-id: sc-config
+        enabled: true
+      label: master
+      profile: config
