@@ -1,6 +1,4 @@
-package com.somersmaes.util;
-
-import org.junit.Test;
+package com.somersames.util;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -25,5 +23,17 @@ public class ResponseResult implements Serializable{
     }
     public void setCode(int code){
         this.code=code;
+    }
+
+    public Map<Object, Object> getMap() {
+        return map;
+    }
+
+    public void setMap(Map<Object, Object> map) {
+        this.map = map;
+    }
+
+    public int getCode() {
+        return code;
     }
 }

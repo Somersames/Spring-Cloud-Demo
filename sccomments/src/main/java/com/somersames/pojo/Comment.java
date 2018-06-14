@@ -1,4 +1,4 @@
-package com.somersmaes.pojo;
+package com.somersames.pojo;
 
 import java.io.Serializable;
 

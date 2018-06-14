@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: sc-comment
+  profiles:
+    active: master
+  cloud:
+    config:
+      profile: config
+      label: master
+      discovery:
+        service-id: sc-config
+        enabled: true
+mybatis:
+  mapper-locations: "classpath*:mapper/*mapper.xml"
+  type-aliases-package: "com.somersames"
+server:
+  port: 8088
+eureka:
+  client:
+    service-url:
+       defaultZone: http://localhost:8081/eureka

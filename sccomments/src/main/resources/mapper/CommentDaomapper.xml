@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.somersames.dao.CommentDao">
+    <select id="queryCommentsByGoodId" parameterType="String" resultType="HashMap">
+        SELECT c.commentUUID,c.commentId,c.comment_content,c.comment_date,c.comment_people,c.goodId,c.agree_num,c.disagree_num,
+                u.user_id,u.user_name,u.sex
+        FROM COMMENT c  LEFT JOIN USER u ON c.comment_people = u.user_name AND c.goodId = #{goodId}
+    </select>
+</mapper>

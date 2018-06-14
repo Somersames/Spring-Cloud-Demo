@@ -1,8 +1,13 @@
-package com.somersmaes.controller;
+package com.somersames.controller;
 
-import com.somersmaes.pojo.Comment;
-import com.somersmaes.util.ResponseResult;
+import com.somersames.dao.CommentDao;
+import com.somersames.pojo.Comment;
+import com.somersames.util.ResponseResult;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * 评论得控制类
@@ -14,11 +19,14 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("comment")
 public class CommentsController {
 
-    @GetMapping("detail/{id}")
-    public ResponseResult getCommentByGoodId(@RequestParam("id") String id){
+    @Autowired
+    CommentDao commentDao;
+    @GetMapping("detail/{product_id}")
+    public ResponseResult getCommentByGoodId(@PathVariable("product_id") String product_id){
         ResponseResult responseResult =new ResponseResult();
+        List<Map<Object, Object>> list =commentDao.queryCommentsByGoodId(product_id);
+        responseResult.setParamter("data",list);
         return responseResult;
-        //TODO 获取评论消息并返回
     }
 
     @PostMapping("submit")

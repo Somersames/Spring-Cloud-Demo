@@ -22,4 +22,4 @@ eureka:
       defaultZone: http://localhost:8081/eureka
 mybatis:
   mapper-locations: "classpath*:mapper/*mapper.xml"
-  type-aliases-package: "com.somersmaes"
+  type-aliases-package: "com.somersames"
