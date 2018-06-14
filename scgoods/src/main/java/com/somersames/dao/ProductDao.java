@@ -1,20 +1,21 @@
 package com.somersames.dao;
 
 import com.somersames.pojo.Goods;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Update;
 import org.omg.CORBA.OBJ_ADAPTER;
 
 import java.util.List;
 import java.util.Map;
-
+@Mapper
 public interface ProductDao {
     /**
      * 根据Type查询出所有的物品
      * @param type
      * @return
      */
-    List<Map<Object,Object>> queryProduct(@Param("type") String type);
+    List<Goods> queryProduct(@Param("type") String type);
 
     /**
      * 根据用户名查询该用户的所有物品

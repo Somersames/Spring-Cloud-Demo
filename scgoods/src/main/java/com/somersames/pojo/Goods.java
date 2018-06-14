@@ -1,6 +1,5 @@
 package com.somersames.pojo;
 
-import java.math.BigInteger;
 
 /**
  * 物品类
@@ -9,14 +8,45 @@ import java.math.BigInteger;
  * @create 2018-05-24 14:21
  **/
 public class Goods {
+    /**
+     * 商品的UUId
+     */
     private String goodUUID;
+    /**
+     * 商品的ID
+     */
     private int goodId;
+    /**
+     * 商品的名称
+     */
     private String goodName;
+    /**
+     * 商品的简介
+     */
     private String goodIntroduction;
+    /**
+     * 商品的发布日期
+     */
     private String publishDate;
+    /**
+     * 商品的发布人
+     */
     private String publishPeople;
-    private int browseNum;
+    /**
+     * 商品的浏览数量
+     */
+    private int viewNum;
+    /**
+     * 商品交易是否完成
+     */
     private boolean isFinish;
+    /**
+     * 商品的被喜欢次数
+     */
+    private int beFavorite;
+
+    private String type;
+
 
     public String getGoodUUID() {
         return goodUUID;
@@ -66,12 +96,12 @@ public class Goods {
         this.publishPeople = publishPeople;
     }
 
-    public int getBrowseNum() {
-        return browseNum;
+    public int getViewNum() {
+        return viewNum;
     }
 
-    public void setBrowseNum(int browseNum) {
-        this.browseNum = browseNum;
+    public void setViewNum(int viewNum) {
+        this.viewNum = viewNum;
     }
 
     public boolean isFinish() {
@@ -80,5 +110,21 @@ public class Goods {
 
     public void setFinish(boolean finish) {
         isFinish = finish;
+    }
+
+    public int getBeFavorite() {
+        return beFavorite;
+    }
+
+    public void setBeFavorite(int beFavorite) {
+        this.beFavorite = beFavorite;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }
