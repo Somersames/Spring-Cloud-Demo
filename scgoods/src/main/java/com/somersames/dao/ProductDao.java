@@ -5,10 +5,11 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Update;
 import org.omg.CORBA.OBJ_ADAPTER;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Map;
-@Mapper
+@Repository
 public interface ProductDao {
     /**
      * 根据Type查询出所有的物品
