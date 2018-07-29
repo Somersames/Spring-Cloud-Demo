@@ -1,7 +1,7 @@
 package com.somersames.controller;
 
 import com.somersames.pojo.Goods;
-import com.somersames.util.ResponseResult;
+import com.util.ResponseResult;
 import org.springframework.web.bind.annotation.*;
 
 /**

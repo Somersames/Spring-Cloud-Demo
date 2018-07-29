@@ -4,7 +4,7 @@ import com.somersames.dao.ProductDao;
 import com.somersames.pojo.Goods;
 import com.somersames.pojo.TestPojo;
 import com.somersames.util.JsonToString;
-import com.somersames.util.ResponseResult;
+import com.util.ResponseResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
