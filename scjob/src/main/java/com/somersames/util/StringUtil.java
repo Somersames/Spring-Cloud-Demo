@@ -1,4 +1,4 @@
-package com.util;
+package com.somersames.util;
 
 /**
  * String的一些封装方法
