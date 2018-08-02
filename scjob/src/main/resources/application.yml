@@ -1,0 +1,20 @@
+spring:
+  rabbitmq:
+    host: localhost
+    password: guest
+    username: guest
+    port: 5672
+  application:
+    name: somersames-job
+
+server:
+  port: 8083
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8081/eureka
+
+
+#start:
+#    default:
+#        address: "上海"
