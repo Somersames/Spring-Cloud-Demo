@@ -4,9 +4,15 @@ spring:
     password: guest
     username: guest
     port: 5672
+    publisher-confirms: true
+    virtual-host: /
   application:
     name: somersames-job
-
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/good?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    username: root
+    password: 123456
 server:
   port: 8083
 eureka:
