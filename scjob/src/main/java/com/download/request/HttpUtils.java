@@ -5,6 +5,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 import sun.swing.StringUIClientPropertyKey;
 
 import java.util.Map;
@@ -17,7 +19,10 @@ import java.util.Set;
  * @create 2018-08-05 23:11
  **/
 @Slf4j
+@Service
 public class HttpUtils {
+    @Value("${start.default.address}")
+    String address;
     //类加载时就初始化
     private static final CloseableHttpClient httpClient = HttpClients.createDefault();
 
@@ -27,18 +32,27 @@ public class HttpUtils {
         }
         return httpClient;
     }
-    public static void startGrab(Map<Object,Object> params ,String url,String requestType){
+    public static HttpPost startGrab(Map<String, String> params ,String url,String requestType){
         CloseableHttpClient httpClient = getInstance();
         //TODO:之后新建一个StringUtils，然后替换该判断
         if(requestType == null || requestType.length() ==0){
             requestType ="GET";
         }
+        Object obj=null;
+        HttpPost httpPost =null;
         if(RequestType.POST.equals(requestType)){
             //TODO:之后新建一个StringUtils，然后判断是否为空
-           HttpPost httpPost =new HttpPost(url);
+            obj =new HttpPost(url);
         }
-        for (Map.Entry<Object, Object> entry : params.entrySet()) {
-            //TODO:迭代取值
+        for (Map.Entry<String, String> entry : params.entrySet()) {
+            if(entry.getKey() != null && entry.getValue() != null){
+                httpPost =(HttpPost)obj;
+                httpPost.setHeader(entry.getKey(),entry.getValue());
+            }
         }
+        return httpPost;
+    }
+    public void sa(){
+        System.out.println(address);
     }
 }

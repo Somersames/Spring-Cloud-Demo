@@ -21,6 +21,6 @@ eureka:
       defaultZone: http://localhost:8081/eureka
 
 
-#start:
-#    default:
-#        address: "上海"
+start:
+    default:
+        address: "上海"

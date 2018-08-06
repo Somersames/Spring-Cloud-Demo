@@ -1,5 +1,7 @@
 package com.controller;
 
+import com.download.request.GrabDataByAddress;
+import com.download.request.HttpUtils;
 import com.mq.Sender;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,10 +18,14 @@ import javax.annotation.Resource;
 public class RabbitmqTest {
 
     @Resource
+    HttpUtils httpUtils;
+
+    @Resource
     Sender sender;
 
     @RequestMapping(value = "/rabbitmq/test",method = RequestMethod.POST)
     public String getRabbitmq(@RequestBody String body){
+        httpUtils.sa();
         sender.send();
         return "OK";
     }
