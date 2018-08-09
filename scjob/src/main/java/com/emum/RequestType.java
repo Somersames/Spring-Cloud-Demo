@@ -6,8 +6,7 @@ package com.emum;
  **/
 public enum RequestType {
     POST("POST"),
-    GET("GET")
-    ;
+    GET("GET");
     private String type;
 
 

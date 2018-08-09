@@ -1,27 +1,25 @@
 spring:
-  rabbitmq:
-    host: localhost
-    password: guest
-    username: guest
-    port: 5672
-    publisher-confirms: true
-    virtual-host: /
   application:
-    name: somersames-job
+    name: somersames-goods
+  cloud:
+    config:
+      discovery:
+        service-id: sc-config
+        enabled: true
+      label: master
+      profile: config
+
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/good?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
     username: root
-    password: 123456
+    password: 806440556Mysql
 server:
   port: 8083
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8081/eureka
-
-
-start:
-    default:
-        address: "上海"
-        Cache-Control: "no-cache, no-store, max-age=0"
+mybatis:
+  mapper-locations: "classpath*:mapper/*mapper.xml"
+  type-aliases-package: "com.somersames"

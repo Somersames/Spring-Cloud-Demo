@@ -40,7 +40,7 @@ public class GoodController {
         //TODO 通过用户名查询出该人的发布历史
         return responseResult;
     }
-    @GetMapping("test/angular")
+    @GetMapping("src/main/test/angular")
     @ResponseBody
     public String testAngular(){
         TestPojo testPojo =new TestPojo();
