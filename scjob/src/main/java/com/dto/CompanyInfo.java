@@ -1,5 +1,7 @@
 package com.dto;
 
+import java.util.List;
+
 /**
  * 关于公司的一个返回DTO
  *
@@ -10,7 +12,7 @@ public class CompanyInfo {
 
     private String companyId;
 
-    private String[] companyLabelList;
+    private List<String> companyLabelList;
 
     private String publisherId;
 
@@ -18,12 +20,11 @@ public class CompanyInfo {
 
     private String district;
 
-    private String[] positionLables;
+    private List<String> positionLables;
 
-    private String[] industryLables;
+    private List<String> industryLables;
 
     private String companyShortName;
-
 
     private String positionId;
 
@@ -109,11 +110,11 @@ public class CompanyInfo {
         this.companyId = companyId;
     }
 
-    public String[] getCompanyLabelList() {
+    public List<String> getCompanyLabelList() {
         return companyLabelList;
     }
 
-    public void setCompanyLabelList(String[] companyLabelList) {
+    public void setCompanyLabelList(List<String> companyLabelList) {
         this.companyLabelList = companyLabelList;
     }
 
@@ -141,19 +142,19 @@ public class CompanyInfo {
         this.district = district;
     }
 
-    public String[] getPositionLables() {
+    public List<String> getPositionLables() {
         return positionLables;
     }
 
-    public void setPositionLables(String[] positionLables) {
+    public void setPositionLables(List<String> positionLables) {
         this.positionLables = positionLables;
     }
 
-    public String[] getIndustryLables() {
+    public List<String> getIndustryLables() {
         return industryLables;
     }
 
-    public void setIndustryLables(String[] industryLables) {
+    public void setIndustryLables(List<String> industryLables) {
         this.industryLables = industryLables;
     }
 

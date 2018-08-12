@@ -99,6 +99,13 @@
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.49</version>
+        </dependency>
+
         <!--&lt;!&ndash; https://mvnrepository.com/artifact/org.springframework.amqp/spring-rabbit &ndash;&gt;-->
         <!--<dependency>-->
             <!--<groupId>org.springframework.amqp</groupId>-->
@@ -130,6 +137,14 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
             </plugin>
         </plugins>
     </build>
