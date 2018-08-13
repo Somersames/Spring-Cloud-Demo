@@ -32,7 +32,7 @@ public class HttpUtils {
         }
         return httpClient;
     }
-    public static HttpPost startGrab(Map<String, String> params ,String url,String requestType){
+    public  HttpPost startGrab(Map<String, String> params ,String url,String requestType){
         CloseableHttpClient httpClient = getInstance();
         //TODO:之后新建一个StringUtils，然后替换该判断
         if(requestType == null || requestType.length() ==0){
@@ -40,14 +40,14 @@ public class HttpUtils {
         }
         Object obj=null;
         HttpPost httpPost =null;
-        if(RequestType.POST.equals(requestType)){
+//        if(RequestType.POST.equals(requestType)){
             //TODO:之后新建一个StringUtils，然后判断是否为空
             obj =new HttpPost(url);
-        }
+//        }
         for (Map.Entry<String, String> entry : params.entrySet()) {
             if(entry.getKey() != null && entry.getValue() != null){
                 httpPost =(HttpPost)obj;
-                httpPost.setHeader(entry.getKey(),entry.getValue());
+                httpPost.addHeader(entry.getKey(),entry.getValue());
             }
         }
         return httpPost;

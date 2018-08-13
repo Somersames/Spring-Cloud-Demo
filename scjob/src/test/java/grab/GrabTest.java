@@ -1,6 +1,9 @@
-package com.download.request;
+package grab;
 
-import com.download.Grab;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
+import com.download.request.HttpUtils;
+import com.dto.LagouDto;
 import com.emum.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.NameValuePair;
@@ -10,37 +13,23 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
+import org.junit.Test;
 
-import javax.annotation.Resource;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 /**
- * 拉勾首页获取数据
- *
  * @author szh
- * @create 2018-07-31 23:40
+ * @create 2018-08-13 23:45
  **/
-@Service
-public class GrabDataByAddress extends Grab {
-
-    @Resource
-    HttpUtils httpUtils;
-
-    @Override
-    public String getData() {
-        return null;
-    }
-
-    @Override
-    public String getDataByAddress(String address) throws IOException {
+public class GrabTest {
+    @Test
+    public void  getDataByAddress() throws IOException {
+        HttpUtils httpUtils =new HttpUtils();
         CloseableHttpClient httpClient = HttpClients.createDefault();
         Map<String,String> param =new HashMap<String, String>();
         Map<String,String> paramMap =new HashMap<>();
@@ -48,7 +37,6 @@ public class GrabDataByAddress extends Grab {
         paramMap.put("Accept-Encoding", Header.AcceptEncoding.getType());
         paramMap.put("Accept-Language", Header.AcceptLanguage.getType());
         paramMap.put("Connection", Header.Connection.getType());
-//        paramMap.put("Content-Length", "23");
         paramMap.put("Content-Type", Header.ContentType.getType());
         paramMap.put("Cookie", "JSESSIONID=ABAAABAAAFCAAEG40E027925B1C5E1CB19E7FE90D3CD3D5; user_trace_token=20180813233451-7a1d8fce-a19e-475a-a40f-6642d5742662; SEARCH_ID=a1446d307db74811817010321867ba13");
         paramMap.put("Host", "www.lagou.com");
@@ -68,7 +56,17 @@ public class GrabDataByAddress extends Grab {
         HttpEntity httpEntity = response.getEntity();
         if (httpClient != null) {
             InputStream inputStream = httpEntity.getContent();
+            byte[] bytes = new byte[1024];
+            int len;
+            StringBuffer sb =new StringBuffer();
+            while ((len = inputStream.read(bytes)) != -1) {
+                String s = new String(bytes, 0, len);
+                sb.append(s);
+            }
+            String result = sb.toString();
+            LagouDto lagouDto = JSON.parseObject(result, new TypeReference<LagouDto>() {});
+            System.out.println(lagouDto.getContent().getPageSize());
         }
-        return "OK";
+
     }
 }
