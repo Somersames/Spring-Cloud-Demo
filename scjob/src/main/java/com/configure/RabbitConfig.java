@@ -15,17 +15,17 @@ import org.springframework.context.annotation.Configuration;
 public class RabbitConfig {
 
     @Bean
-    public Queue helloQueue(){
-        return new Queue("Hello");
+    public Queue LagouQueue(){
+        return new Queue("Lagou");
     }
     //创建exchange，命名为log
     @Bean
     TopicExchange exchange() {
-        return new TopicExchange("Hello");
+        return new TopicExchange("Lagou");
     }
     //绑定log.error队列到exchange，routingkey为log.error
     @Bean
     Binding bindingExchangeError(Queue Hello, TopicExchange exchange) {
-        return BindingBuilder.bind(Hello).to(exchange).with("Hello.#");
+        return BindingBuilder.bind(Hello).to(exchange).with("Lagou.#");
     }
 }

@@ -48,7 +48,6 @@ public class GrabDataByAddress extends Grab {
         paramMap.put("Accept-Encoding", Header.AcceptEncoding.getType());
         paramMap.put("Accept-Language", Header.AcceptLanguage.getType());
         paramMap.put("Connection", Header.Connection.getType());
-//        paramMap.put("Content-Length", "23");
         paramMap.put("Content-Type", Header.ContentType.getType());
         paramMap.put("Cookie", "JSESSIONID=ABAAABAAAFCAAEG40E027925B1C5E1CB19E7FE90D3CD3D5; user_trace_token=20180813233451-7a1d8fce-a19e-475a-a40f-6642d5742662; SEARCH_ID=a1446d307db74811817010321867ba13");
         paramMap.put("Host", "www.lagou.com");
