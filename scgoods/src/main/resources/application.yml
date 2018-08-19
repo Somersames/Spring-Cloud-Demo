@@ -1,4 +1,11 @@
 spring:
+  rabbitmq:
+      host: localhost
+      password: guest
+      username: guest
+      port: 5672
+      publisher-confirms: true
+      virtual-host: /
   application:
     name: somersames-goods
   cloud:
@@ -13,13 +20,20 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/good?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
     username: root
-    password: 806440556Mysql
+    password: 123456
+  data:
+    mongodb:
+      host: localhost
+      database: lagou
+      port: 27017
 server:
   port: 8083
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8081/eureka
+#mybatis:
+#  mapper-locations: "classpath*:mapper/*mapper.xml"
+#  type-aliases-package: "com.somersames"
 mybatis:
-  mapper-locations: "classpath*:mapper/*mapper.xml"
-  type-aliases-package: "com.somersames"
+    mapper-locations: "classpath*:mapper/*.xml"

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.io.IOException;
 
 /**
  * @author szh
@@ -24,7 +25,7 @@ public class RabbitmqTest {
     Sender sender;
 
     @RequestMapping(value = "/rabbitmq/test",method = RequestMethod.POST)
-    public String getRabbitmq(@RequestBody String body){
+    public String getRabbitmq(@RequestBody String body) throws IOException {
         httpUtils.sa();
         sender.send();
         return "OK";
