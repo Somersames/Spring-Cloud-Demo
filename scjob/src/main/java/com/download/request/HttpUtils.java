@@ -1,7 +1,9 @@
 package com.download.request;
 
 import com.emum.RequestType;
+import com.proxy.BaseProxy;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
@@ -33,7 +35,8 @@ public class HttpUtils {
         return httpClient;
     }
     public  HttpPost startGrab(Map<String, String> params ,String url,String requestType){
-        CloseableHttpClient httpClient = getInstance();
+//        CloseableHttpClient httpClient = getInstance();
+        CloseableHttpClient httpClient = BaseProxy.getHttpPostWithProxy("115.46.98.208", 8123, "http");
         //TODO:之后新建一个StringUtils，然后替换该判断
         if(requestType == null || requestType.length() ==0){
             requestType ="GET";

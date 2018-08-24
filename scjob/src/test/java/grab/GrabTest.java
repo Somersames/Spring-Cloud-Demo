@@ -5,8 +5,11 @@ import com.alibaba.fastjson.TypeReference;
 import com.download.request.HttpUtils;
 import com.dto.LagouDto;
 import com.emum.Header;
+import com.proxy.BaseProxy;
 import org.apache.http.HttpEntity;
+import org.apache.http.HttpHost;
 import org.apache.http.NameValuePair;
+import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
@@ -30,15 +33,22 @@ public class GrabTest {
     @Test
     public void  getDataByAddress() throws IOException {
         HttpUtils httpUtils =new HttpUtils();
-        CloseableHttpClient httpClient = HttpClients.createDefault();
+//        CloseableHttpClient httpClient = HttpClients.createDefault();
+//        CloseableHttpClient httpClient = BaseProxy.getHttpPostWithProxy("115.46.98.208", 8123, "http");
         Map<String,String> param =new HashMap<String, String>();
+        HttpHost proxy = new HttpHost("58.38.94.126", 9797);
+        //把代理设置到请求配置
+        RequestConfig defaultRequestConfig = RequestConfig.custom()
+                .setProxy(proxy)
+                .build();
+        CloseableHttpClient httpClient = HttpClients.custom().setDefaultRequestConfig(defaultRequestConfig).build();
         Map<String,String> paramMap =new HashMap<>();
         paramMap.put("accept", Header.Accept.getType());
         paramMap.put("Accept-Encoding", Header.AcceptEncoding.getType());
         paramMap.put("Accept-Language", Header.AcceptLanguage.getType());
         paramMap.put("Connection", Header.Connection.getType());
         paramMap.put("Content-Type", Header.ContentType.getType());
-        paramMap.put("Cookie", "JSESSIONID=ABAAABAAAFCAAEG40E027925B1C5E1CB19E7FE90D3CD3D5; user_trace_token=20180813233451-7a1d8fce-a19e-475a-a40f-6642d5742662; SEARCH_ID=a1446d307db74811817010321867ba13");
+        paramMap.put("Cookie", "");
         paramMap.put("Host", "www.lagou.com");
         paramMap.put("Origin", "https://www.lagou.com");
         paramMap.put("Referer", "https://www.lagou.com/jobs/list_java?city=%E5%85%A8%E5%9B%BD&cl=false&fromSearch=true&labelWords=&suginput=");
@@ -47,6 +57,7 @@ public class GrabTest {
         paramMap.put("X-Anit-Forge-Token:", "none");
         paramMap.put("X-Requested-With", "XMLHttpRequest");
         HttpPost post=httpUtils.startGrab(paramMap,"https://www.lagou.com/jobs/positionAjax.json?needAddtionalResult=false","POST");
+//        post.setConfig(defaultRequestConfig);
         List<NameValuePair> params = new ArrayList<NameValuePair>(2);
         params.add(new BasicNameValuePair("first", "true"));
         params.add(new BasicNameValuePair("pn", "1"));

@@ -2,6 +2,7 @@ package com.download.request;
 
 import com.download.Grab;
 import com.emum.Header;
+import com.proxy.BaseProxy;
 import org.apache.http.HttpEntity;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -41,7 +42,8 @@ public class GrabDataByAddress extends Grab {
 
     @Override
     public String getDataByAddress(String address) throws IOException {
-        CloseableHttpClient httpClient = HttpClients.createDefault();
+
+        CloseableHttpClient httpClient = BaseProxy.getHttpPostWithProxy("118.190.95.43",9001,"http");
         Map<String,String> param =new HashMap<String, String>();
         Map<String,String> paramMap =new HashMap<>();
         paramMap.put("accept", Header.Accept.getType());
