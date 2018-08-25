@@ -17,8 +17,8 @@ import java.io.InputStream;
 public class ProxyTest {
     @Test
     public void grab() throws IOException {
-        CloseableHttpClient httpClient = BaseProxy.getHttpPostWithProxy("171.39.45.38", 8123, "http");
-        HttpGet httpGet = new HttpGet("http://tool.chinaz.com");
+        CloseableHttpClient httpClient = BaseProxy.getHttpPostWithProxy("122.246.49.174", 8010, "http");
+        HttpGet httpGet = new HttpGet("http://tool.chinaz.com/");
         httpGet.setHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8");
         httpGet.setHeader("Accept-Encoding", "gzip, deflate");
         httpGet.setHeader("Accept-Language", "zh-CN,zh;q=0.9,en;q=0.8");

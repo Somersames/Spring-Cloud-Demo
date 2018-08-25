@@ -9,12 +9,12 @@ import com.proxy.BaseProxy;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpHost;
 import org.apache.http.NameValuePair;
-import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.conn.params.ConnRoutePNames;
 import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
+import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.junit.Test;
 
@@ -27,19 +27,23 @@ import java.util.Map;
 
 /**
  * @author szh
- * @create 2018-08-13 23:45
+ * @create 2018-08-25 15:25
  **/
-public class GrabTest {
+public class GrabTest2 {
     @Test
     public void  getDataByAddress() throws IOException {
         HttpUtils httpUtils =new HttpUtils();
-        CloseableHttpClient httpClient = BaseProxy.getHttpPostWithProxy("117.127.0.195", 8080, "http");
-//        HttpHost proxy = new HttpHost("121.8.98.198", 80, "http");
-//        //把代理设置到请求配置
-//        RequestConfig defaultRequestConfig = RequestConfig.custom()
-//                .setProxy(proxy)
-//                .build();
-//        CloseableHttpClient httpClient = HttpClients.custom().setDefaultRequestConfig(defaultRequestConfig).build();
+////        CloseableHttpClient httpClient = BaseProxy.getHttpPostWithProxy("117.127.0.195", 8080, "http");
+//////        HttpHost proxy = new HttpHost("121.8.98.198", 80, "http");
+//////        //把代理设置到请求配置
+//////        RequestConfig defaultRequestConfig = RequestConfig.custom()
+//////                .setProxy(proxy)
+//////                .build();
+//////        CloseableHttpClient httpClient = HttpClients.custom().setDefaultRequestConfig(defaultRequestConfig).build();
+        HttpHost proxy = new HttpHost("121.31.147.100", 8123);
+        DefaultHttpClient httpClient = new DefaultHttpClient();
+        httpClient.getParams().setParameter(ConnRoutePNames.DEFAULT_PROXY,proxy);
+
         Map<String,String> paramMap =new HashMap<>();
         paramMap.put("accept", Header.Accept.getType());
         paramMap.put("Accept-Encoding", Header.AcceptEncoding.getType());
