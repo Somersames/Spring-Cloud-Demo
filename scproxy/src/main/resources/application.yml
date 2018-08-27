@@ -10,6 +10,7 @@ spring:
       max-wait: -1
       min-idle: 0
       max-idle: 8
+    timeout: 0
 #server:
 #  port: 8082
 #eureka:

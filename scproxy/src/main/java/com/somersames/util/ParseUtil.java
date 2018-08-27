@@ -22,14 +22,16 @@ public class ParseUtil {
             Elements temp = liElements.get(i).getElementsByTag("span");
             String[] ipContent = temp.text().split(" ");
             ProxyDto proxyDto =new ProxyDto();
-            for (String str : ipContent) {
-                if(str.contains(".")){
-                    proxyDto.setIp(str);
-                }else if(isNum(str)){
-                    proxyDto.setIp(str);
-                }
-                list.add(proxyDto);
-            }
+            proxyDto.setIp(ipContent[0]);
+            proxyDto.setPort(ipContent[1]);
+            proxyDto.setType(ipContent[2]);
+            proxyDto.setHttpType(ipContent[3]);
+            proxyDto.setCountry(ipContent[4]);
+            proxyDto.setProvince(ipContent[5]);
+            proxyDto.setOperator(ipContent[6]);
+            proxyDto.setAliveTime(ipContent[7]);
+            proxyDto.setLastValidTime(ipContent[9]);
+            list.add(proxyDto);
         }
         return list;
     }

@@ -23,4 +23,8 @@ public class ProxyController {
         wuYouDaili.grad();
         return "A";
     }
+    @RequestMapping(value = "/say",method = RequestMethod.GET)
+    public  String test2(){
+        return  wuYouDaili.say();
+    }
 }

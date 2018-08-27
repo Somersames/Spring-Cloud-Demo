@@ -19,7 +19,6 @@ public class RedisObjectSerializer implements RedisSerializer<Object> {
         if (object == null) {
             return new byte[0];
         }
-
         try {
             return serializer.convert(object);
         } catch (Exception ex) {

@@ -15,6 +15,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -27,9 +28,9 @@ import java.util.List;
 @Service
 public class WuYouDaili implements BaseRequest {
 
-    @Autowired
-    private StringRedisTemplate stringRedisTemplate;
-    @Autowired
+//    @Autowired
+//    private StringRedisTemplate stringRedisTemplate;
+    @Resource
     private RedisTemplate<String, ProxyDto> redisTemplate;
 
     @Override
@@ -71,5 +72,10 @@ public class WuYouDaili implements BaseRequest {
             redisTemplate.opsForList().leftPush("proxy",proxyDto);
         }
 
+    }
+
+    @Override
+    public String say() {
+        return redisTemplate.opsForList().leftPop("proxy").getIp();
     }
 }
