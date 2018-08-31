@@ -2,6 +2,7 @@ import com.netflix.discovery.converters.Auto;
 import com.somersames.UserConfigApplication;
 //import com.somersames.redisutil.RedisConfigue;
 import com.somersames.dto.ProxyDto;
+import com.somersames.proxy.impl.XiCIProxy;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,8 @@ public class SpringTest {
     @Resource
     private RedisTemplate<String, ProxyDto> redisTemplate;
 
+    @Resource
+    XiCIProxy xiCIProxy;
     @Test
     public void hello() throws Exception {
 //        this.sender.send();
@@ -40,7 +43,8 @@ public class SpringTest {
 //        ProxyDto proxyDto1 =new ProxyDto();
 //        proxyDto1.setIp("1.1.1.0");
 //        redisTemplate.opsForValue().set("proxy",proxyDto1);
-        ProxyDto list =redisTemplate.opsForList().leftPop("proxy");
-        System.out.println(list == null);
+        xiCIProxy.grad();
+//        ProxyDto list =redisTemplate.opsForList().leftPop("proxy");
+//        System.out.println(list == null);
     }
 }

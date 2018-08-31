@@ -46,4 +46,23 @@ public class ParseUtil {
         }
         return true;
     }
+    public static List<ProxyDto> xiciParseContent(String content) {
+        Document document = Jsoup.parse(content);
+        List<ProxyDto> list = new ArrayList<ProxyDto>();
+        Elements liElements = document.getElementsByClass("odd");
+        for (int i = 0; i < liElements.size(); i++) {
+            Elements temp = liElements.get(i).getElementsByTag("td");
+            String[] ipContent = temp.text().split(" ");
+            ProxyDto proxyDto =new ProxyDto();
+            proxyDto.setIp(ipContent[0]);
+            proxyDto.setPort(ipContent[1]);
+            proxyDto.setCountry(ipContent[2]);
+            proxyDto.setType(ipContent[3]);
+            proxyDto.setHttpType(ipContent[4]);
+            proxyDto.setAliveTime(ipContent[5]);
+            proxyDto.setLastValidTime(ipContent[6]);
+            list.add(proxyDto);
+        }
+        return list;
+    }
 }

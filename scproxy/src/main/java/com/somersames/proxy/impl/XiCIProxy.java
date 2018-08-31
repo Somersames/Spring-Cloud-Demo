@@ -11,29 +11,25 @@ import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * @author szh
- * @create 2018-08-26 22:41
+ * @create 2018-08-31 23:33
  **/
 @Service
-public class WuYouDaili implements BaseRequest {
-
+public class XiCIProxy implements BaseRequest{
     @Resource
     private RedisTemplate<String, ProxyDto> redisTemplate;
 
     @Override
-    public void grad() {
+    public void grad() throws IOException {
         ProxyDto proxy =redisTemplate.opsForList().leftPop("proxy");
         CloseableHttpClient httpClient =null;
         if(proxy == null || proxy.getIp() == null){
@@ -41,25 +37,22 @@ public class WuYouDaili implements BaseRequest {
         }else{
             httpClient = BaseProxy.getHttpPostWithProxy("118.190.95.43",9001,"http");
         }
-        HttpGet httpGet =new HttpGet("http://www.data5u.com/free/gngn/index.shtml");
+        HttpGet httpGet =new HttpGet("http://www.xicidaili.com");
         httpGet.addHeader("Accept", Header.Accept.getType());
         httpGet.addHeader("Accept-Encoding", Header.AcceptEncoding.getType());
         httpGet.addHeader("Accept-Language", Header.AcceptLanguage.getType());
-        httpGet.addHeader("Cache-Control", Header.CACHECONTROLL.getType());
         httpGet.addHeader("Connection", Header.Connection.getType());
-        httpGet.addHeader("Host", Header.Host.getType());
+        httpGet.addHeader("If-None-Match", "W/\"4acb70c806ea7878a35d8b7383e4800a\"");
+        httpGet.addHeader("Host", "www.xicidaili.com");
         httpGet.addHeader("Upgrade-Insecure-Requests", Header.UPGRADEINSECUREREQUESTS.getType());
         httpGet.addHeader("User-Agent", Header.UserAgent.getType());
-        String conten = SendRequest.SendRequestAndResponse(httpGet,httpClient);
-        List<ProxyDto> list =ParseUtil.parseContent(conten);
-        for (ProxyDto proxyDto: list){
-            redisTemplate.opsForList().leftPush("proxy",proxyDto);
-        }
+        String content =SendRequest.SendRequestAndResponse(httpGet, httpClient);
+        List<ProxyDto> list = ParseUtil.xiciParseContent(content);
 
     }
 
     @Override
     public String say() {
-        return redisTemplate.opsForList().leftPop("proxy").getIp();
+        return null;
     }
 }

@@ -23,9 +23,10 @@ public class RedisConfig {
     @ConfigurationProperties(prefix="spring.redis")
     JedisConnectionFactory jedisConnectionFactory() {
         JedisConnectionFactory jedisConnectionFactory =new JedisConnectionFactory();
-        jedisConnectionFactory.setHostName("localhost"); // TODO 换成自己的ip
+        jedisConnectionFactory.setHostName("127.0.0.1");
+        // TODO 换成自己的ip
         jedisConnectionFactory.setPort(6379);
-        jedisConnectionFactory.setPassword("somersames");
+        jedisConnectionFactory.setPassword("123456");
         return jedisConnectionFactory;
     }
 
