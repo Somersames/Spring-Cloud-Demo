@@ -1,6 +1,6 @@
 package com.somersames.ipenum;
 
-public enum Header {
+public enum HeaderEnum {
 
     Accept("text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8"),
 
@@ -43,7 +43,7 @@ public enum Header {
         this.type = type;
     }
 
-    Header(String type) {
+    HeaderEnum(String type) {
         this.type = type;
     }
 }

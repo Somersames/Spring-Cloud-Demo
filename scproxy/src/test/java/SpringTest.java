@@ -2,7 +2,10 @@ import com.netflix.discovery.converters.Auto;
 import com.somersames.UserConfigApplication;
 //import com.somersames.redisutil.RedisConfigue;
 import com.somersames.dto.ProxyDto;
+import com.somersames.proxy.impl.KuaiDaili;
+import com.somersames.proxy.impl.WuYouDaili;
 import com.somersames.proxy.impl.XiCIProxy;
+import com.somersames.proxy.valid.impl.ValidIpImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +17,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import javax.annotation.Resource;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ThreadFactory;
 
 /**
  * @author szh
@@ -32,6 +36,14 @@ public class SpringTest {
 
     @Resource
     XiCIProxy xiCIProxy;
+
+    @Resource
+    KuaiDaili kuaiDaili;
+
+    @Resource
+    WuYouDaili wuYouDaili;
+    @Resource
+    ValidIpImpl validIp;
     @Test
     public void hello() throws Exception {
 //        this.sender.send();
@@ -43,7 +55,11 @@ public class SpringTest {
 //        ProxyDto proxyDto1 =new ProxyDto();
 //        proxyDto1.setIp("1.1.1.0");
 //        redisTemplate.opsForValue().set("proxy",proxyDto1);
-        xiCIProxy.grad();
+        kuaiDaili.grad();
+//        xiCIProxy.grad();
+//        wuYouDaili.grad();
+//        validIp.valid();
+        Thread.currentThread().sleep(100000);
 //        ProxyDto list =redisTemplate.opsForList().leftPop("proxy");
 //        System.out.println(list == null);
     }

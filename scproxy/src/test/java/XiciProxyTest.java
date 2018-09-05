@@ -18,7 +18,7 @@ public class XiciProxyTest {
 //        jedis.auth("somersames");
 //        System.out.println("Connection to server sucessfully");
 //        System.out.println("Server is running: "+jedis.ping());
-        FileInputStream fileInputStream = new FileInputStream(new File("D:\\disk\\xici.txt"));
+        FileInputStream fileInputStream = new FileInputStream(new File("D:\\disk\\kuaidaili.txt"));
         Reader reader = new InputStreamReader(fileInputStream, "UTF-8");
         int len;
         char[] a = new char[1024];
@@ -30,7 +30,7 @@ public class XiciProxyTest {
         }
         reader.close();
         Document document = Jsoup.parse(sb.toString());
-        Elements liElements = document.getElementsByClass("odd");
+        Elements liElements = document.getElementsByClass("table table-bordered table-striped").select("tbody").select("tr");
 //        Element liElements = document.getElementById("ip_list");
 //        Elements listEl =liElements.getAllElements();
 //        System.out.println(listEl.text());

@@ -15,6 +15,8 @@ public class BaseProxy {
         //把代理设置到请求配置
         RequestConfig defaultRequestConfig = RequestConfig.custom()
                 .setProxy(proxy)
+                // 超时时间
+                .setConnectTimeout(5000)
                 .build();
         CloseableHttpClient httpclient = HttpClients.custom().setDefaultRequestConfig(defaultRequestConfig).build();
         return httpclient;

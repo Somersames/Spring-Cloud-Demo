@@ -1,5 +1,6 @@
 package com.somersames.proxy.util;
 
+import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -7,6 +8,9 @@ import org.apache.http.impl.client.CloseableHttpClient;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.StreamCorruptedException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author szh
@@ -14,10 +18,12 @@ import java.io.InputStream;
  **/
 public class SendRequest {
     public static String SendRequestAndResponse(HttpGet httpGet, CloseableHttpClient httpClient){
+        Map<String,String> map =new HashMap<String, String>();
         StringBuffer sb = new StringBuffer();
         try {
             CloseableHttpResponse response = httpClient.execute(httpGet);
             HttpEntity httpEntity = response.getEntity();
+//            Header[] headers =response.getHeaders("")
             InputStream inputStream = httpEntity.getContent();
             byte[] bytes = new byte[1024];
             int len;
