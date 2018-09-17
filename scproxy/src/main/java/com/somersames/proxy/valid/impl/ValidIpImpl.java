@@ -53,13 +53,9 @@ public class ValidIpImpl  implements ValidIp{
 
     private boolean validIp(){
         ProxyDto proxyDto =getIpFromRedis();
-        CloseableHttpClient httpClient =null;
-        if(proxyDto == null || proxyDto.getIp() == null){
-            httpClient = HttpClients.createDefault();
-        }else{
-            httpClient = BaseProxy.getHttpPostWithProxy(proxyDto.getIp(),Integer.parseInt(proxyDto.getPort()),proxyDto.getHttpType());
-        }
+        CloseableHttpClient httpClient = BaseProxy.getHttpPostWithProxy(proxyDto.getIp(),Integer.parseInt(proxyDto.getPort()),proxyDto.getHttpType());
         System.out.println(proxyDto.getIp() + "验证中");
+//        CloseableHttpClient httpClient = HttpClients.createDefault();
         HttpGet httpGet = new HttpGet("http://www.baidu.com");
         httpGet.setHeader("Accept", HeaderEnum.Accept.getType());
         httpGet.setHeader("Accept-Encoding","gzip, deflate, br");
@@ -72,6 +68,7 @@ public class ValidIpImpl  implements ValidIp{
         try{
             CloseableHttpResponse response=httpClient.execute(httpGet);
             String content = SendRequest.SendRequestAndResponse(httpGet, httpClient);
+            System.out.println("验证IP----------------:"+content);
             if(content.contains("百度") || "HTTP/1.1 200 OK".equals(response.getStatusLine())){
                 redisTemplate.opsForList().leftPush("validProxy",proxyDto);
             }

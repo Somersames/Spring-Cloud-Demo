@@ -1,12 +1,14 @@
 package com.somersames.util;
 
 import com.somersames.dto.ProxyDto;
+import com.somersames.httputils.HttpUtils;
 import com.somersames.proxy.valid.impl.ValidIpImpl;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -22,6 +24,8 @@ public class ParseUtil {
 
     @Resource
     RedisTemplate<String,ProxyDto> redisTemplate;
+
+
 
     public  List<ProxyDto> parseContent(String content) {
         Document document = Jsoup.parse(content);
@@ -56,8 +60,8 @@ public class ParseUtil {
         return true;
     }
     public  List<ProxyDto> xiciParseContent(String content) {
-        if("block".equals(content)){
-            removeProxy();
+        if(content.length() < 500){
+            System.out.println("小于500的-------------------:"+content);
         }
         Document document = Jsoup.parse(content);
         List<ProxyDto> list = new ArrayList<ProxyDto>();
@@ -100,9 +104,5 @@ public class ParseUtil {
             list.add(proxyDto);
         }
         return list;
-    }
-    public synchronized void removeProxy(){
-        //移除已经废弃的IP
-        redisTemplate.opsForList().leftPop("validProxy");
     }
 }

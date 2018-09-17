@@ -23,7 +23,7 @@ import java.util.Queue;
 public class BaiduTest {
     @Test
     public void baidu() {
-        CloseableHttpClient httpClient = BaseProxy.getHttpPostWithProxy("183.129.244.17", 35618, "http");
+        CloseableHttpClient httpClient = BaseProxy.getHttpPostWithProxy("47.52.208.159", 80, "http");
         HttpGet httpGet = new HttpGet("http://www.baidu.com");
         httpGet.setHeader("Accept", HeaderEnum.Accept.getType());
         httpGet.setHeader("Accept-Encoding", "gzip, deflate, br");

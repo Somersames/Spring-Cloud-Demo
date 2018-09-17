@@ -1,7 +1,6 @@
 package com.somersames.httputils;
 
 import com.somersames.dto.ProxyDto;
-import org.apache.http.client.HttpClient;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 

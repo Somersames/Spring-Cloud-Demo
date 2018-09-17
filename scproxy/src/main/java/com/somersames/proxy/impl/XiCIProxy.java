@@ -64,7 +64,7 @@ public class XiCIProxy implements BaseRequest{
         CloseableHttpClient httpClient =null;
         if(proxy == null || proxy.getIp() == null){
             //TODO 需要在配置文件中添加开关
-            return;
+            httpClient = HttpClients.createDefault();
         }else{
             httpClient   = BaseProxy.getHttpPostWithProxy(proxy.getIp(),Integer.parseInt(proxy.getPort()),proxy.getHttpType());
         }

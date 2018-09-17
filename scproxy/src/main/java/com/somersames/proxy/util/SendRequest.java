@@ -23,7 +23,6 @@ public class SendRequest {
         try {
             CloseableHttpResponse response = httpClient.execute(httpGet);
             HttpEntity httpEntity = response.getEntity();
-//            Header[] headers =response.getHeaders("")
             InputStream inputStream = httpEntity.getContent();
             byte[] bytes = new byte[1024];
             int len;

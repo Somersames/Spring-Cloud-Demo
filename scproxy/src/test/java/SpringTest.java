@@ -55,10 +55,10 @@ public class SpringTest {
 //        ProxyDto proxyDto1 =new ProxyDto();
 //        proxyDto1.setIp("1.1.1.0");
 //        redisTemplate.opsForValue().set("proxy",proxyDto1);
-        kuaiDaili.grad();
+//        kuaiDaili.grad();
 //        xiCIProxy.grad();
 //        wuYouDaili.grad();
-//        validIp.valid();
+        validIp.valid();
         Thread.currentThread().sleep(100000);
 //        ProxyDto list =redisTemplate.opsForList().leftPop("proxy");
 //        System.out.println(list == null);
