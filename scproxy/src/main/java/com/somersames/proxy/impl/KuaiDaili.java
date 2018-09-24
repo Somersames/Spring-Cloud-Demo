@@ -1,5 +1,6 @@
 package com.somersames.proxy.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.somersames.dto.ProxyDto;
 import com.somersames.httputils.HttpUtils;
 import com.somersames.ipenum.HeaderEnum;
@@ -31,6 +32,7 @@ import java.util.concurrent.Executors;
 public class KuaiDaili implements BaseRequest {
 
     private static volatile int PAGE = 1;
+
     @Resource
     RedisTemplate<String,ProxyDto> redisTemplate;
 
@@ -44,7 +46,7 @@ public class KuaiDaili implements BaseRequest {
     public void grad() throws IOException {
         ExecutorService fixedThreadPool = Executors.newFixedThreadPool(10);
         //TODO 需要换成实际的页数
-        for(int i=0 ;i<1000;i++){
+        for(int i=0 ;i<100;i++){
             fixedThreadPool.execute(new Runnable() {
                 @Override
                 public void run() {
@@ -60,14 +62,17 @@ public class KuaiDaili implements BaseRequest {
     }
 
     private void startGrab(){
+        log.info(httpUtilsl == null ? "httpUtilsl----------is Null":"adadad");
+//        ProxyDto proxy =httpUtilsl.validProxyDto;
         ProxyDto proxy =getIpfromRedis();
+        log.info("目前获取的Ip是{}，尝试使用此Ip爬取快代理", JSON.toJSONString(proxy));
         CloseableHttpClient httpClient= null;
         if(proxy == null || proxy.getIp() == null){
             httpClient = HttpClients.createDefault();
-            log.debug("使用默认代理访问");
+            log.info("无可用IP，尝试使用本机Ip爬取代理");
         }else{
             httpClient = BaseProxy.getHttpPostWithProxy(proxy.getIp(),Integer.parseInt(proxy.getPort()),proxy.getHttpType());
-            log.debug("通过代理访问，ip={}，端口={}",proxy.getIp(),proxy.getPort());
+            log.info("通过代理访问，ip={}，端口={}",proxy.getIp(),proxy.getPort());
         }
         String url ="https://www.kuaidaili.com/free/inha/"+String.valueOf(getPage());
         System.out.println(url);
@@ -91,11 +96,6 @@ public class KuaiDaili implements BaseRequest {
         }
     }
 
-    private synchronized ProxyDto getIpfromRedis(){
-        ProxyDto proxy =redisTemplate.opsForList().index("validProxy",0);
-        return proxy;
-    }
-
     private synchronized  int getPage(){
         if(PAGE >=1000){
             return -1000;
@@ -103,5 +103,10 @@ public class KuaiDaili implements BaseRequest {
             PAGE++;
             return PAGE;
         }
+    }
+    //初始获取可用Ip
+    private  ProxyDto getIpfromRedis(){
+        ProxyDto proxy =redisTemplate.opsForList().index("validProxy",0);
+        return proxy;
     }
 }

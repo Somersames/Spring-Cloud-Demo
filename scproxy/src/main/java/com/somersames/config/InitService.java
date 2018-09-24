@@ -1,6 +1,5 @@
 package com.somersames.config;
 
-import com.netflix.discovery.converters.Auto;
 import com.somersames.proxy.impl.KuaiDaili;
 import com.somersames.proxy.impl.WuYouDaili;
 import com.somersames.proxy.impl.XiCIProxy;
@@ -14,7 +13,7 @@ import javax.annotation.PostConstruct;
  * @create 2018-09-17 23:55
  * 主要用于项目一旦启动就初始化数据
  **/
-@Component
+//@Component
 public class InitService {
 
     @Autowired

@@ -2,6 +2,7 @@ import com.netflix.discovery.converters.Auto;
 import com.somersames.UserConfigApplication;
 //import com.somersames.redisutil.RedisConfigue;
 import com.somersames.dto.ProxyDto;
+import com.somersames.httputils.HttpUtils;
 import com.somersames.proxy.impl.KuaiDaili;
 import com.somersames.proxy.impl.WuYouDaili;
 import com.somersames.proxy.impl.XiCIProxy;
@@ -44,6 +45,8 @@ public class SpringTest {
     WuYouDaili wuYouDaili;
     @Resource
     ValidIpImpl validIp;
+
+
     @Test
     public void hello() throws Exception {
 //        this.sender.send();
@@ -55,7 +58,7 @@ public class SpringTest {
 //        ProxyDto proxyDto1 =new ProxyDto();
 //        proxyDto1.setIp("1.1.1.0");
 //        redisTemplate.opsForValue().set("proxy",proxyDto1);
-//        kuaiDaili.grad();
+        kuaiDaili.grad();
 //        xiCIProxy.grad();
 //        wuYouDaili.grad();
         validIp.valid();

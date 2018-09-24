@@ -22,9 +22,12 @@ public class HttpUtils {
      * 有效IP，当无可用IP的时候为null，或者locaalhost
      */
     //TODO 这里需要容器一加载就赋值
-    public volatile static ProxyDto validProxyDto=null;
+    public volatile  ProxyDto validProxyDto=null;
 
-    public synchronized void removeInvalidIp(ProxyDto proxyDto){
+    {
+        System.out.println("init------------HttpUtils");
+    }
+    public void removeInvalidIp(ProxyDto proxyDto){
         if(proxyDto.getIp().equals(validProxyDto.getIp())){
             //remove valid IP
             redisTemplate.opsForList().leftPop("validProxy");
@@ -32,6 +35,11 @@ public class HttpUtils {
         }else{
             return;
         }
+    }
+    //初始获取可用Ip
+    private  ProxyDto getIpfromRedis(){
+        ProxyDto proxy =redisTemplate.opsForList().index("validProxy",0);
+        return proxy;
     }
 
 }
