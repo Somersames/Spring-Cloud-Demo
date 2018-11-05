@@ -37,3 +37,11 @@ eureka:
 #  type-aliases-package: "com.somersames"
 mybatis:
     mapper-locations: "classpath*:mapper/*.xml"
+
+
+#somersames:
+#  rabbitmq:
+#    laGouFailQueue: laGouFailQueue
+#    laGouQueue : laGouQueue
+#    laGouFailExchange : laGouFailExchange
+#    laGouFailExchangeRoutingKey : laGouFailExchangeRoutingKey

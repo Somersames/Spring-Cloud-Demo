@@ -35,7 +35,6 @@ public class HttpUtils {
         return httpClient;
     }
     public  HttpPost startGrab(Map<String, String> params ,String url,String requestType){
-//        CloseableHttpClient httpClient = getInstance();
         CloseableHttpClient httpClient = BaseProxy.getHttpPostWithProxy("115.46.98.208", 8123, "http");
         //TODO:之后新建一个StringUtils，然后替换该判断
         if(requestType == null || requestType.length() ==0){
@@ -43,10 +42,8 @@ public class HttpUtils {
         }
         Object obj=null;
         HttpPost httpPost =null;
-//        if(RequestType.POST.equals(requestType)){
             //TODO:之后新建一个StringUtils，然后判断是否为空
             obj =new HttpPost(url);
-//        }
         for (Map.Entry<String, String> entry : params.entrySet()) {
             if(entry.getKey() != null && entry.getValue() != null){
                 httpPost =(HttpPost)obj;

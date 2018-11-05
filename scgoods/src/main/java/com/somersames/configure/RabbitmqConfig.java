@@ -1,11 +1,13 @@
 package com.somersames.configure;
 
-import org.springframework.amqp.core.Binding;
-import org.springframework.amqp.core.BindingBuilder;
-import org.springframework.amqp.core.Queue;
-import org.springframework.amqp.core.TopicExchange;
+import lombok.Data;
+import org.springframework.amqp.core.*;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Raabbitmq的配置文件
@@ -14,20 +16,34 @@ import org.springframework.context.annotation.Configuration;
  * @create 2018-08-19 15:18
  **/
 @Configuration
+@ConfigurationProperties(ignoreUnknownFields = false, prefix = "somersames.rabbitmq")
+@Data
 public class RabbitmqConfig {
 
+    private String laGouFailQueue = "laGou2FailQueue";
+    private String laGouQueue = "laGou2Queue";
+    private String laGouFailExchange = "laGou2FailExchange";
+    private String laGouFailExchangeRoutingKey = "laGou2FailExchangeRoutingKey";
+    public static final String DEAD_LETTER_EXCHANGE = "x-dead-letter-exchange";
+
+    public static final String DEAD_LETTER_ROUTING_KEY = "x-dead-letter-routing-key";
     @Bean
-    public Queue LagouQueue(){
-        return new Queue("Lagou");
+    public Queue laGouFailQueue() {
+        return new Queue(laGouFailQueue);
     }
-    //创建exchange，命名为log
     @Bean
-    TopicExchange exchange() {
-        return new TopicExchange("Lagou");
+    public DirectExchange laGouFailExchange() {
+        return new DirectExchange(laGouFailExchange);
     }
-    //绑定log.error队列到exchange，routingkey为log.error
     @Bean
-    Binding bindingExchangeError(Queue Hello, TopicExchange exchange) {
-        return BindingBuilder.bind(Hello).to(exchange).with("Lagou.#");
+    public Binding bindingLagouFailExchange(Queue laGouFailQueue, DirectExchange laGouFailExchange) {
+        return BindingBuilder.bind(laGouFailQueue).to(laGouFailExchange).with(laGouFailExchangeRoutingKey);
+    }
+    @Bean
+    public Queue laGouQueue() {
+        Map<String, Object> map = new HashMap<>();
+        map.put(DEAD_LETTER_EXCHANGE, laGouFailExchange);//设置死信交换机
+        map.put(DEAD_LETTER_ROUTING_KEY, laGouFailExchangeRoutingKey);//设置死信routingKey
+        return new Queue(laGouQueue, true, false, false, map);
     }
 }

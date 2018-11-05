@@ -40,9 +40,9 @@ public class GrabTest2 {
 //////                .setProxy(proxy)
 //////                .build();
 //////        CloseableHttpClient httpClient = HttpClients.custom().setDefaultRequestConfig(defaultRequestConfig).build();
-        HttpHost proxy = new HttpHost("121.31.147.100", 8123);
+//        HttpHost proxy = new HttpHost("121.31.147.100", 8123);
         DefaultHttpClient httpClient = new DefaultHttpClient();
-        httpClient.getParams().setParameter(ConnRoutePNames.DEFAULT_PROXY,proxy);
+//        httpClient.getParams().setParameter(ConnRoutePNames.DEFAULT_PROXY,proxy);
 
         Map<String,String> paramMap =new HashMap<>();
         paramMap.put("accept", Header.Accept.getType());

@@ -1,9 +1,6 @@
 package com.mq;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.TypeReference;
 import com.download.request.HttpUtils;
-import com.dto.LagouDto;
 import com.emum.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.NameValuePair;
